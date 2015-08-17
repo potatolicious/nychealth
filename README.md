@@ -27,13 +27,17 @@ Before we get too far, we need to load the restaurant inspection results in CSV 
 
 Restaurant inspection datasets get updated infrequently, but you may want to set up a cron job to pull the latest and rebuild the database. Note that the webserver does not need credentials to write to the database, so it's best to leave those blank. Only the machine updating the database (maybe your own box, maybe a deploy box, maybe something else) needs the write-access credentials.
 
+There's a [pretty good tutorial](http://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/) on installing and running PostgreSQL on your own dev box (OSX).
+
 1. Download a copy of [the DOHMH NYC Restaurant Inspection Results](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/) in CSV format (hit 'Export').
-2. `TODO`
+2. `source {YOUR_CREDENTIALS_FILE}`
+3. Run `python loaddata.py {PATH_TO_CSV_FILE}`
 
 ## Debug/Development (Webserver)
 
 1. Install all dependencies
 3. `python nychealth.py` to launch debug webserver
+3. A quick note on databases - I'm developing directly against an Amazon Postgre-RDS instance that accepts connections from my dev machine, you can just as easily develop against your own local instance of PostgreSQL, but I make no guarantees ;)
 
 ## Deployment (Webserver)
 
